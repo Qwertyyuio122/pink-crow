@@ -33,12 +33,13 @@ function Hero() {
     <section ref={ref} className="relative h-[100svh] min-h-[640px] overflow-hidden grain">
       <motion.div style={{ y, scale }} className="absolute inset-0">
         <img
-          src={IMG.storefront}
-          alt="The iconic pink door of Pink Crow on Queen Street, Charlottetown PEI"
-          className="w-full h-full object-cover"
+          src={IMG.kitchen}
+          alt="Pink Crow's open kitchen and wood-fired oven glowing on Queen Street, Charlottetown PEI"
+          className="w-full h-full object-cover object-center"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/30 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-transparent" />
       </motion.div>
 
       <motion.div style={{ opacity }} className="relative z-10 h-full flex flex-col justify-end pb-24 px-6 lg:px-16 max-w-7xl mx-auto">
@@ -109,7 +110,7 @@ function Story() {
           transition={{ duration: 1 }}
           className="relative aspect-[4/5] overflow-hidden rounded-sm"
         >
-          <img src={IMG.kitchen} alt="Pink Crow open kitchen with wood-fired oven" className="w-full h-full object-cover" />
+          <img src={IMG.storefront} alt="Pink Crow's signature hot-pink door at 45 Queen Street, Charlottetown" className="w-full h-full object-cover" />
           <div className="absolute inset-0 ring-1 ring-inset ring-foreground/10" />
         </motion.div>
         <motion.div

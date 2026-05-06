@@ -2,7 +2,7 @@
 const CDN = "https://cdn.res-menu.net/pink-crow";
 
 export const IMG = {
-  storefront: `${CDN}/albums-4.jpg`,     // vertical pink door storefront
+  storefront: `${CDN}/albums-1.jpg`,     // vertical pink door storefront
   kitchen: `${CDN}/albums-7.jpg`,        // wide open kitchen + wood-fired oven
   glassware: `${CDN}/photo-8.jpg`,       // moody glass + menu on table
   halfChicken: `${CDN}/albums-8.jpg`,

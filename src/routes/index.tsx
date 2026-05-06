@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IMG } from "@/lib/pinkcrow-images";
 import { REVIEWS } from "@/lib/pinkcrow-data";
 
@@ -17,6 +17,7 @@ function Home() {
       <Story />
       <SignatureDishes />
       <ReviewsScroll />
+      <InstagramGallery />
       <CTA />
     </div>
   );
@@ -237,6 +238,136 @@ function ReviewRow({
         ))}
       </motion.div>
     </div>
+  );
+}
+
+const IG_IMAGES = [
+  { src: "/instagram/ig-01.jpg", alt: "Pink Crow — fire-lit interior and open kitchen" },
+  { src: "/instagram/ig-02.jpg", alt: "Pink Crow — wood-fired Neapolitan pizza" },
+  { src: "/instagram/ig-03.jpg", alt: "Pink Crow — signature cocktails at the bar" },
+  { src: "/instagram/ig-04.jpg", alt: "Pink Crow — dry-aged steak plating" },
+  { src: "/instagram/ig-05.jpg", alt: "Pink Crow — PEI oysters on ice" },
+  { src: "/instagram/ig-06.jpg", alt: "Pink Crow — restaurant atmosphere and ambiance" },
+  { src: "/instagram/ig-07.jpg", alt: "Pink Crow — charred octopus with romesco" },
+  { src: "/instagram/ig-08.jpg", alt: "Pink Crow — smoked cocktails and glassware" },
+  { src: "/instagram/ig-09.jpg", alt: "Pink Crow — hot honey pepperoni pizza" },
+  { src: "/instagram/ig-10.jpg", alt: "Pink Crow — heritage building exterior on Queen Street" },
+];
+
+function InstagramGallery() {
+  const [hovered, setHovered] = useState<number | null>(null);
+
+  return (
+    <section className="py-32 px-6 lg:px-16 max-w-7xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.9 }}
+        className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12"
+      >
+        <div>
+          <div className="text-xs uppercase tracking-[0.4em] text-primary mb-4">Follow the flame</div>
+          <h2 className="font-display text-5xl md:text-6xl text-balance">
+            Life at Pink Crow.
+          </h2>
+        </div>
+        <a
+          href="https://www.instagram.com/pinkcrowcharlottetown/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-sm uppercase tracking-[0.2em] hover:text-primary transition-colors shrink-0"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+          @pinkcrowcharlottetown
+        </a>
+      </motion.div>
+
+      {/* Bento-grid gallery — 4-column, 4-row, no empty cells */}
+      <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[200px] md:auto-rows-[220px] gap-3">
+        {/* Row 1–2: large hero 2×2 + 2 portraits 1×2 */}
+        <GalleryTile img={IG_IMAGES[0]} index={0} hovered={hovered} setHovered={setHovered} className="col-span-2 row-span-2" />
+        <GalleryTile img={IG_IMAGES[1]} index={1} hovered={hovered} setHovered={setHovered} className="col-span-1 row-span-2" />
+        <GalleryTile img={IG_IMAGES[2]} index={2} hovered={hovered} setHovered={setHovered} className="col-span-1 row-span-2" />
+
+        {/* Row 3: wide 2×1 + 2 squares 1×1 */}
+        <GalleryTile img={IG_IMAGES[3]} index={3} hovered={hovered} setHovered={setHovered} className="col-span-2 row-span-1" />
+        <GalleryTile img={IG_IMAGES[4]} index={4} hovered={hovered} setHovered={setHovered} className="col-span-1 row-span-1" />
+        <GalleryTile img={IG_IMAGES[5]} index={5} hovered={hovered} setHovered={setHovered} className="col-span-1 row-span-1" />
+
+        {/* Row 4: 4 equal squares */}
+        <GalleryTile img={IG_IMAGES[6]} index={6} hovered={hovered} setHovered={setHovered} className="col-span-1 row-span-1" />
+        <GalleryTile img={IG_IMAGES[7]} index={7} hovered={hovered} setHovered={setHovered} className="col-span-1 row-span-1" />
+        <GalleryTile img={IG_IMAGES[8]} index={8} hovered={hovered} setHovered={setHovered} className="col-span-1 row-span-1" />
+        <GalleryTile img={IG_IMAGES[9]} index={9} hovered={hovered} setHovered={setHovered} className="col-span-1 row-span-1" />
+      </div>
+    </section>
+  );
+}
+
+function GalleryTile({
+  img,
+  index,
+  hovered,
+  setHovered,
+  className,
+}: {
+  img: { src: string; alt: string };
+  index: number;
+  hovered: number | null;
+  setHovered: (i: number | null) => void;
+  className?: string;
+}) {
+  return (
+    <motion.a
+      href="https://www.instagram.com/pinkcrowcharlottetown/"
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, scale: 0.96 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.7, delay: index * 0.04, ease: [0.22, 1, 0.36, 1] }}
+      className={`relative overflow-hidden rounded-sm bg-card block ${className}`}
+      onMouseEnter={() => setHovered(index)}
+      onMouseLeave={() => setHovered(null)}
+    >
+      <img
+        src={img.src}
+        alt={img.alt}
+        className={`w-full h-full object-cover transition-transform duration-700 ease-out ${
+          hovered === index ? "scale-110" : "scale-100"
+        }`}
+        loading="lazy"
+      />
+      {/* Dark overlay on hover */}
+      <div
+        className={`absolute inset-0 bg-background/60 flex items-center justify-center transition-opacity duration-300 ${
+          hovered === index ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <svg
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="text-primary"
+        >
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+        </svg>
+      </div>
+      {/* Subtle gradient at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background/40 to-transparent pointer-events-none" />
+    </motion.a>
   );
 }
 

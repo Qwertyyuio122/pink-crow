@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { Instagram, Facebook } from "lucide-react";
 
 export function SiteFooter() {
   return (
@@ -9,6 +10,14 @@ export function SiteFooter() {
           <p className="mt-3 text-sm text-muted-foreground max-w-xs">
             Wood-fired pizza & dry-aged steak in historic downtown Charlottetown, PEI.
           </p>
+          <div className="flex gap-4 mt-6 text-muted-foreground">
+            <a href="https://www.instagram.com/pinkcrowcharlottetown/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+              <Instagram size={20} />
+            </a>
+            <a href="https://www.facebook.com/pinkcrowpei/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+              <Facebook size={20} />
+            </a>
+          </div>
         </div>
         <div className="text-sm space-y-2">
           <div className="uppercase tracking-[0.2em] text-xs text-muted-foreground mb-3">Visit</div>

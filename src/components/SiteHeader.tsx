@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { Instagram, Facebook } from "lucide-react";
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -27,12 +28,22 @@ export function SiteHeader() {
           <Link to="/menu" activeProps={{ className: "text-primary" }} className="hover:text-primary transition-colors">Menu</Link>
           <Link to="/contact" activeProps={{ className: "text-primary" }} className="hover:text-primary transition-colors">Contact</Link>
         </nav>
-        <a
-          href="tel:+19028920909"
-          className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground text-xs uppercase tracking-[0.2em] font-medium hover:bg-primary/90 transition-colors"
-        >
-          Reserve · 902-892-0909
-        </a>
+        <div className="flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-4 text-muted-foreground">
+            <a href="https://www.instagram.com/pinkcrowcharlottetown/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+              <Instagram size={18} />
+            </a>
+            <a href="https://www.facebook.com/pinkcrowpei/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+              <Facebook size={18} />
+            </a>
+          </div>
+          <a
+            href="tel:+19028920909"
+            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground text-xs uppercase tracking-[0.2em] font-medium hover:bg-primary/90 transition-colors"
+          >
+            Reserve · 902-892-0909
+          </a>
+        </div>
       </div>
     </header>
   );
